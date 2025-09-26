@@ -1,36 +1,23 @@
-using System;
-using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 public class card : MonoBehaviour
 {
-    private Timer timer;
     [SerializeField] private Slider slider;
     [SerializeField] private float interval = 1;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        timer = new Timer(interval);
-        timer.Start();
-        timer.Elapsed += OnTimedEvent;
+        StartCoroutine(ResetSlider());
     }
 
-
-    // Update is called once per frame
     void Update()
     {
-        
-
-
-
-
-
 
     }
-    private void OnTimedEvent(System.Object source, ElapsedEventArgs e)
+    private IEnumerator ResetSlider()
     {
+        yield return new WaitForSeconds(interval);
         slider.value = 0;
     }
 }
